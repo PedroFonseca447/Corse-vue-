@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="assignment">
+      
+      <section v-for="dados in UserData" :key="dados.nomeUsuario">
+      
+        <h2>nome: {{dados.nomeUsuario}}</h2>
+       
+        <p>idade: {{ dados.idade}}</p>
+       
+        <p>{{calculaIdade(dados.idade)}}</p>
+       
+        <p>random favorite number:{{ returnRandomNumber()}}</p>
+        <div>
+      
+          <img  src="https://via.placeholder.com/150" alt="Imagem aleatória" />
+        </div>
+       
+        <input type="text" :value="dados.nomeUsuario"/>
+      </section>
+    </div> 
+  </body>
+</html>
