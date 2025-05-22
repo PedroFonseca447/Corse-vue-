@@ -15,33 +15,49 @@
   <body>
     <header>
       <h1>Monster Slayer</h1>
-     <div id="game">
+    </header>
+
+    <div id="game">
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value" :style="monsterBarStyle" ></div>
+          <div class="healthbar__value" :style="monsterBarStyle"></div>
         </div>
       </section>
+
       <section id="player" class="container">
         <h2>Your Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value" :style="playerBarStyle" ></div>
+          <div class="healthbar__value" :style="playerBarStyle"></div>
         </div>
       </section>
-      <section id="controls">
+
+      <section class="container" v-if="winner">
+        <h2>Game Over!</h2>
+        <h3 v-if="winner === 'monster'">Monster wins!</h3>
+        <h3 v-else-if="winner === 'player'">Player wins!</h3>
+        <h3 v-else>Draw!</h3>
+        <button @click="startNewGame()">Start a new game!</button>
+      </section>
+
+      <section id="controls" v-if="!winner">
         <button @click="atackMonster()">ATTACK</button>
-        <button  :disabled="isSpecialAttackDisabled"  @click="specialAtack()">
+        <button :disabled="isSpecialAttackDisabled" @click="specialAtack()">
           SPECIAL ATTACK
         </button>
         <button @click="healPlayer()">HEAL</button>
-        <button>SURRENDER</button>
+        <button @click="surrenderGame()">SURRENDER</button>
       </section>
+
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul>
+          <li v-for="logMessage in logMessages">
+            {{ logMessage.actionBy }} - {{ logMessage.hadWhatAction }} - {{
+            logMessage.valueAction }}
+          </li>
+        </ul>
       </section>
     </div>
   </body>
 </html>
-</header>
-   
